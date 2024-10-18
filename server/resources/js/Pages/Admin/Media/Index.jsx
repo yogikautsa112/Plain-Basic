@@ -2,12 +2,12 @@ import React from "react";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import PageTitle from "@/Components/atoms/PageTitle";
 import DataTable from "@/Components/molecules/DataTable";
-import { router, useForm } from "@inertiajs/react";
+import { router } from "@inertiajs/react";
 import { HiTrash } from "react-icons/hi2";
 import MediaLibrary from "@/Components/molecules/MediaLibrary";
 
 export default function Index({ media }) {
-    const { data : mediaData, ...pagination } = media;
+    const { data: mediaData, ...pagination } = media;
 
     const handleDeleteRole = (id) => {
         if (window.confirm("Are you sure you want to delete this image?")) {
@@ -19,12 +19,9 @@ export default function Index({ media }) {
         document.getElementById('media-opener').click();
     };
 
-    const {data, setData} = useForm({
-        image: "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png"
-    })
-
     const handleConfirmMedia = (selectedImage) => {
-        setData('image', selectedImage?.url)
+        // You might want to do something with the selected image here
+        console.log(selectedImage);
     }
 
     return (
@@ -39,10 +36,6 @@ export default function Index({ media }) {
                 btnHandler={handleAddMedia}
             />
 
-            <div className="w-20 h-20">
-                <img src={data?.image} alt="" />
-            </div>
-
             <DataTable
                 dataSource={mediaData}
                 columns={[
@@ -54,15 +47,13 @@ export default function Index({ media }) {
                     {
                         title: "Image",
                         dataIndex: "url",
-                        render: (value) => {
-                            console.log(value)
-                            return (
-                                <img
-                                    src={value}
-                                    className="object-cover object-center w-20 h-20 rounded-sm"
-                                ></img>
-                            );
-                        },
+                        render: (value) => (
+                            <img
+                                src={value}
+                                className="object-cover object-center w-20 h-20 rounded-lg"
+                                alt="Media"
+                            />
+                        ),
                     },
                     {
                         title: "Filename",
@@ -90,7 +81,7 @@ export default function Index({ media }) {
                 pagination={pagination}
             />
             <MediaLibrary
-            onConfirm={handleConfirmMedia}
+                onConfirm={handleConfirmMedia}
             />
         </DashboardLayout>
     );

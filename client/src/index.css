@@ -1,0 +1,50 @@
+/* montserrat alternates from google font */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+.btn {
+  @apply font-normal;
+}
+
+.custom-container {
+  @apply mx-auto w-[95%] md:w-[90&] lg:w-[80%];
+}
+
+.main-content {
+  @apply min-h-screen;
+}
+
+.badge-status {
+  @apply lg:px-3 lg:py-2 rounded-lg font-semibold block h-auto text-center w-auto md:w-[170px];
+}
+
+.badge-pending-payment {
+  @apply bg-[#FAEBC9] text-[#9B4E06] font-semibold;
+}
+
+.badge-completed {
+  @apply bg-[#D3FACE] text-[#13A038] font-semibold;
+}
+
+.badge-ready-to-ship {
+  @apply bg-[#DDE7FA] text-[#4A7195] font-semibold;
+}
+
+.badge-shipped {
+  @apply bg-[#ECDDFA] text-[#624A95] font-semibold;
+}
+
+.badge-cancelled {
+  @apply bg-[#F9D6CE] text-[#8C132B];
+}
+
+.badge-processing {
+  @apply bg-[#C8E9FA] text-[#034C9B];
+}

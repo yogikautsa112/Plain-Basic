@@ -1,31 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DashboardLayout from "@/Layouts/DashboardLayout";
 import PageTitle from "@/Components/atoms/PageTitle";
 import DataTable from "@/Components/molecules/DataTable";
 import { HiTrash } from "react-icons/hi2";
 import { Link, router } from "@inertiajs/react";
+import slugify from "slugify";
 
 export default function Index({ categories }) {
     const { data, ...pagination } = categories;
 
     const handleSearch = (value) => {
-        console.log(value);
-        router.get(route('dashboard.categories.index', {
-            search: value,
-        })) 
-    }
+        router.get(
+            route("dashboard.categories.index", {
+                search: value,
+            })
+        );
+    };
 
     const handleDeleteRole = (id) => {
         if (window.confirm("Are you sure you want to delete this role?")) {
             router.delete(route("dashboard.categories.destroy", id));
         }
     };
+
     return (
         <DashboardLayout>
             <PageTitle
                 title="Categories"
                 links={[
-                    { title: "Categories", active: false, url: "/dashboard/categories" },
+                    {
+                        title: "Categories",
+                        active: false,
+                        url: "/dashboard/categories",
+                    },
                 ]}
                 btnTitle="Add New Category"
                 btnLink="/dashboard/categories/create"
@@ -55,7 +62,10 @@ export default function Index({ categories }) {
                         render: (value) => (
                             <div className="flex items-center gap-2">
                                 <Link
-                                    href={route("dashboard.categories.edit", value)}
+                                    href={route(
+                                        "dashboard.categories.edit",
+                                        value
+                                    )}
                                     className="btn btn-success"
                                 >
                                     Edit

@@ -1,0 +1,15 @@
+.home-image-item .overlay {
+  @apply absolute inset-0 bg-black opacity-0 transition-opacity duration-300;
+}
+.home-image-item:hover .overlay {
+  @apply opacity-30 cursor-pointer;
+}
+.home-image-item {
+  @apply overflow-hidden;
+}
+.home-image-item img {
+  @apply transition-transform duration-300;
+}
+.home-image-item:hover img {
+  @apply transform scale-105;
+}

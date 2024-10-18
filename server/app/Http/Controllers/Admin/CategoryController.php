@@ -28,10 +28,13 @@ class CategoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         //
-        return Inertia::render('Admin/Categories/Menage');
+        $categories = Category::all();
+        return Inertia::render('Admin/Categories/Menage', [
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -40,6 +43,19 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title' => 'required|max:255|unique:categories',
+            'slug' => 'required|max:255|unique:categories',
+            'media_url' => 'required'
+        ], [
+            'title' => 'Title is required',
+            'slug' => 'Slug is required',
+            'media_url' => 'Media is required'
+        ]);
+
+        $request = Category::create($request->all());
+
+        return redirect()->route('dashboard.categories.index')->with('success', "Category created successfully");
     }
 
     /**
@@ -56,6 +72,9 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         //
+        $category = Category::findOrFail($id);
+
+        return Inertia::render('Admin/Categories/Menage', ['category' => $category]);
     }
 
     /**
@@ -72,5 +91,12 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         //
+        $category = Category::findOrFail($id);
+        
+        $category->delete();
+
+        session()->flash('success', value:'Category has been deleted');
+
+        return redirect()->route(route: 'dashboard.categories.index');
     }
 }

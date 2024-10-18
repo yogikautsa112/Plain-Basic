@@ -31,3 +31,7 @@ export const formatThousand = (value) => {
 export const withCurrency = (value) => {
     return `Rp ${value}`;
 };
+
+export const openMediaLibraryModal = (id = null) => {
+    document?.getElementById(id || "media-library-opener")?.click()
+}

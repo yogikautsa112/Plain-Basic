@@ -1,0 +1,27 @@
+header {
+  @apply fixed top-0 left-0 w-full;
+}
+
+.nav-mobile-menu {
+  @apply transition-all bg-white duration-300 opacity-0 overflow-hidden absolute w-full left-0 py-4 pointer-events-none;
+}
+
+.nav-mobile-menu.show {
+  @apply h-auto opacity-100 border-b pointer-events-auto z-50;
+}
+
+.btn-plain {
+  @apply bg-white border-white shadow-none text-xl btn-sm p-0 hover:bg-white active:bg-white hover:border-0;
+}
+
+.nav-action {
+  @apply flex gap-3 items-center;
+}
+
+.nav-action .scale-effect {
+  @apply scale-100 transition-all hover:scale-[1.2] active:scale-[1.23];
+}
+
+.nav-logo {
+  @apply md:absolute md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 md:text-xl;
+}
